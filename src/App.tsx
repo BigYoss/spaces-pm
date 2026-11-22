@@ -306,7 +306,7 @@ export default function App() {
                 <p>&ldquo;{r.quote}&rdquo;</p>
               </blockquote>
               <figcaption>
-                <span className="stars" aria-label="Rated 5 out of 5">★★★★★</span>
+                <span className="stars" role="img" aria-label="Rated 5 out of 5">★★★★★</span>
                 {r.name}, Spaces client
               </figcaption>
             </figure>
@@ -402,15 +402,15 @@ export default function App() {
           <div>
             <h3>Legal</h3>
             <a href={TERMS_EN} target="_blank" rel="noopener">Terms and conditions (EN)</a>
-            <a href={TERMS_PT} target="_blank" rel="noopener">Termos e condições (PT)</a>
+            <a href={TERMS_PT} target="_blank" rel="noopener" lang="pt-PT" hrefLang="pt-PT">Termos e condições (PT)</a>
+            <a href="/accessibility">Accessibility statement</a>
           </div>
         </nav>
         <p className="foot-copy">© 2026 Spaces. All rights reserved.</p>
+        <a className="dock" href={PHONE_MAIN.href} aria-label={`Call Spaces on ${PHONE_MAIN.label}`}>
+          <Phone size={22} aria-hidden />
+        </a>
       </footer>
-
-      <a className="dock" href={PHONE_MAIN.href} aria-label={`Call Spaces on ${PHONE_MAIN.label}`}>
-        <Phone size={22} aria-hidden />
-      </a>
     </div>
   );
 }

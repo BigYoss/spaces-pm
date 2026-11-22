@@ -1,9 +1,46 @@
-import { useId, useState } from "react";
+import { useId, useRef, useState, type KeyboardEvent } from "react";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { PROJECTIONS, project, eur, whatsapp, type Typology } from "./content";
 
 const TYPES = Object.keys(PROJECTIONS) as Typology[];
 const YEARS = ["Year 1", "Year 2", "Year 3"] as const;
+
+/** ARIA radio group: one tab stop (roving tabindex), arrows/Home/End move and select. */
+function Seg(p: { labelledBy: string; options: readonly string[]; value: number; onChange: (i: number) => void }) {
+  const refs = useRef<(HTMLButtonElement | null)[]>([]);
+  function onKeyDown(e: KeyboardEvent<HTMLDivElement>) {
+    const n = p.options.length;
+    const step: Record<string, number> = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 };
+    let next: number | null = null;
+    if (e.key in step) next = (p.value + step[e.key] + n) % n;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = n - 1;
+    if (next === null) return;
+    e.preventDefault();
+    p.onChange(next);
+    refs.current[next]?.focus();
+  }
+  return (
+    <div className="seg" role="radiogroup" aria-labelledby={p.labelledBy} onKeyDown={onKeyDown}>
+      {p.options.map((o, i) => (
+        <button
+          key={o}
+          ref={(el) => {
+            refs.current[i] = el;
+          }}
+          type="button"
+          role="radio"
+          aria-checked={p.value === i}
+          tabIndex={p.value === i ? 0 : -1}
+          className="seg-btn"
+          onClick={() => p.onChange(i)}
+        >
+          {o}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 export function Simulator() {
   const [type, setType] = useState<Typology>("T1");
@@ -18,42 +55,16 @@ export function Simulator() {
   ];
 
   return (
-    <div className="sim" aria-labelledby={`${id}-t`}>
+    <div className="sim" role="group" aria-labelledby={`${id}-t`}>
       <h3 id={`${id}-t`} className="sim-title">Estimate a year of short-stay income</h3>
       <fieldset className="sim-field">
-        <legend>Apartment</legend>
-        <div className="seg" role="radiogroup">
-          {TYPES.map((t) => (
-            <button
-              key={t}
-              type="button"
-              role="radio"
-              aria-checked={type === t}
-              className="seg-btn"
-              onClick={() => setType(t)}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
+        <legend id={`${id}-a`}>Apartment</legend>
+        <Seg labelledBy={`${id}-a`} options={TYPES} value={TYPES.indexOf(type)} onChange={(i) => setType(TYPES[i])} />
         <p className="sim-hint">{PROJECTIONS[type].label}</p>
       </fieldset>
       <fieldset className="sim-field">
-        <legend>Year of operation</legend>
-        <div className="seg" role="radiogroup">
-          {YEARS.map((y, i) => (
-            <button
-              key={y}
-              type="button"
-              role="radio"
-              aria-checked={year === i}
-              className="seg-btn"
-              onClick={() => setYear(i as 0 | 1 | 2)}
-            >
-              {y}
-            </button>
-          ))}
-        </div>
+        <legend id={`${id}-y`}>Year of operation</legend>
+        <Seg labelledBy={`${id}-y`} options={YEARS} value={year} onChange={(i) => setYear(i as 0 | 1 | 2)} />
       </fieldset>
 
       <div className="sim-out" aria-live="polite">

@@ -16,6 +16,8 @@ Audience: apartment owners in Porto and Vila Nova de Gaia, many living abroad. P
 - `src/components/AssessmentForm.tsx` composes a WhatsApp or email message. Stores nothing.
 - `src/components/HeroVideo.tsx` muted autoplay loop with poster; reduced motion keeps the poster.
 - `src/components/useParallax.ts` JS fallback; main parallax is CSS scroll-driven (`view-timeline`) in site.css.
+- `accessibility/index.html` + `src/statement.ts` static accessibility statement (second Vite entry, `vercel.json` rewrites `/accessibility`). Update its date and limitations after every audit; never claim more than the audit shows.
+- `public/a11y-widget.js` self-hosted accessibility menu (assistive extra only, not compliance). Stores settings in localStorage only after a user change.
 - `public/assets` images, hero video (`hero-1080.mp4`, `hero-720.mp4`, `hero-poster.webp`), OG image, favicons. `public/fonts` self-hosted Epilogue.
 
 ## Brand (matches spaces-pt.com)
@@ -28,3 +30,4 @@ Paper #F6F3EA, sand #EAE6DA, ink #1B1B1B, text #333, muted #595853, single accen
 - Keep every hover style inside `@media (hover: hover) and (pointer: fine)`; inputs stay 16px; respect `prefers-reduced-motion`.
 - One label per intent: contact CTA is always "Talk to us".
 - Set `VITE_SITE_URL` in `.env` (and in Vercel env vars) to the final domain; also update `public/robots.txt` and `public/sitemap.xml`.
+- Accessibility target: WCAG 2.2 AA (covers IS 5568 and EN 301 549). Keep the hero video pause button, roving-tabindex radio groups, focus-to-first-error and contrast over photos (tile scrim) intact.

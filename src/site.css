@@ -76,7 +76,15 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .hero-sub { margin-top: 1.4rem; font-size: clamp(1.05rem, 1.3vw, 1.2rem); max-width: 30rem; color: var(--muted); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.2rem; }
 .hero-media { position: relative; padding-bottom: 3rem; padding-left: 3rem; }
-.hero-film { aspect-ratio: 5 / 4; overflow: hidden; background: var(--sand); }
+.hero-film { position: relative; aspect-ratio: 5 / 4; overflow: hidden; background: var(--sand); }
+/* WCAG 2.2.2: pause control for the looping film. Focus ring sits inside the pill so it reads on any frame. */
+.hero-pause {
+  position: absolute; inset-block-end: 0.75rem; inset-inline-end: 0.75rem; z-index: 1; display: grid; place-items: center;
+  width: 2.75rem; height: 2.75rem; border-radius: 50%; border: 1px solid var(--line); background: rgb(246 243 234 / 0.92); color: var(--ink); cursor: pointer;
+  transition: background-color 0.2s var(--ease);
+}
+.hero-pause:focus-visible { outline: 2px solid var(--ink); outline-offset: -5px; }
+@media (hover: hover) and (pointer: fine) { .hero-pause:hover { background: var(--paper); } }
 .hero-video { width: 100%; height: 100%; object-fit: cover; object-position: 68% 50%; background: var(--sand) url("/assets/hero-poster.webp") 68% 50% / cover no-repeat; }
 .hero-inset { position: absolute; left: 0; bottom: 0; width: 34%; aspect-ratio: 3 / 4; margin: 0; overflow: hidden; border: 6px solid var(--paper); background: var(--sand); }
 .hero-inset img { width: 100%; height: 100%; object-fit: cover; }
@@ -123,7 +131,7 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .tile-tall { grid-row: span 2; }
 .tile-photo { padding: 0; justify-content: flex-end; min-height: 16rem; color: var(--white); }
 .tile-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tile-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(27 27 27 / 0) 40%, rgb(27 27 27 / 0.72)); }
+.tile-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(27 27 27 / 0) 20%, rgb(27 27 27 / 0.62) 50%, rgb(27 27 27 / 0.86)); }
 .tile-cap { position: relative; z-index: 1; padding: 1.5rem 1.75rem; }
 .tile-cap h3 { color: var(--white); }
 .tile-cap p { color: rgb(252 251 247 / 0.88); }
@@ -222,7 +230,7 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .field label { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
 .field label span { color: var(--muted); font-weight: 400; }
 .field input, .field select, .field textarea {
-  font: 400 16px/1.4 var(--font); color: var(--ink); background: var(--white); border: 1px solid rgb(27 27 27 / 0.35); border-radius: 0;
+  font: 400 16px/1.4 var(--font); color: var(--ink); background: var(--white); border: 1px solid rgb(27 27 27 / 0.6); border-radius: 0;
   padding: 0.8rem 0.9rem; min-height: 3rem; width: 100%; appearance: none; -webkit-appearance: none;
 }
 .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%231b1b1b' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.9rem center; padding-right: 2.4rem; }
@@ -242,6 +250,7 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 @media (hover: hover) and (pointer: fine) { .lines a:hover, .text-link:hover { text-decoration: underline; text-underline-offset: 4px; } }
 .map { aspect-ratio: 4 / 3; background: var(--sand); border: 1px solid var(--line); }
 .map iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.4) sepia(0.12); }
+.map:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
 .text-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.92rem; color: var(--ink); text-decoration: none; }
 
 /* FOOTER (same light theme, sand) */
@@ -317,3 +326,15 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+/* ACCESSIBILITY STATEMENT (accessibility/index.html) */
+.legal { max-width: 46rem; margin: 0 auto; padding: clamp(3rem, 7vw, 5rem) var(--gutter) clamp(4rem, 8vw, 6rem); }
+.legal h1 { margin-bottom: 1.2rem; }
+.legal h2 { font-size: clamp(1.4rem, 2.2vw, 1.75rem); margin: 2.6rem 0 0.8rem; }
+.legal p + p { margin-top: 0.9rem; }
+.legal-lead { font-size: 1.15rem; color: var(--muted); }
+.legal ul { margin: 0; padding-inline-start: 1.2rem; display: grid; gap: 0.6rem; }
+.legal-contact { list-style: none; padding-inline-start: 0 !important; margin-top: 0.9rem !important; }
+.legal a { color: var(--ink); text-underline-offset: 3px; }
+.legal-date { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+.foot-min { grid-template-columns: 1fr; padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); }

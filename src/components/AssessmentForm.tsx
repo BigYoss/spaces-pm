@@ -16,7 +16,11 @@ export function AssessmentForm() {
     if (!name) next.name = "Please add your name.";
     if (!area) next.area = "Please choose where the apartment is.";
     setErrors(next);
-    if (Object.keys(next).length) return null;
+    const first = (["name", "area"] as const).find((k) => next[k]);
+    if (first) {
+      (form.elements.namedItem(first) as HTMLElement | null)?.focus();
+      return null;
+    }
     const lines = [
       `Hi Spaces, I'm ${name}.`,
       `Apartment: ${d.get("type")} in ${area}.`,
@@ -43,13 +47,13 @@ export function AssessmentForm() {
     <form className="form" onSubmit={onSubmit} noValidate>
       <div className="field">
         <label htmlFor="f-name">Your name</label>
-        <input id="f-name" name="name" autoComplete="name" aria-invalid={!!errors.name} aria-describedby="f-name-err" />
+        <input id="f-name" name="name" autoComplete="name" required aria-invalid={!!errors.name} aria-describedby="f-name-err" />
         <p id="f-name-err" className="field-err" role="alert">{errors.name}</p>
       </div>
       <div className="form-row">
         <div className="field">
           <label htmlFor="f-area">Where is it?</label>
-          <select id="f-area" name="area" defaultValue="" aria-invalid={!!errors.area} aria-describedby="f-area-err">
+          <select id="f-area" name="area" defaultValue="" required aria-invalid={!!errors.area} aria-describedby="f-area-err">
             <option value="" disabled>Choose an area</option>
             <option>Porto</option>
             <option>Vila Nova de Gaia</option>

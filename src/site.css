@@ -351,3 +351,29 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .legal th { color: var(--ink); font-weight: 500; }
 .legal-table-wrap { overflow-x: auto; }
 .todo { background: #fff3b0; color: var(--ink); padding: 0 0.25rem; }
+
+/* OWNER GUIDES (blog, built by scripts/build-blog.mjs) */
+.post h2 { font-size: clamp(1.4rem, 2.2vw, 1.75rem); }
+.post h3 { margin: 1.6rem 0 0.5rem; }
+.post p + p, .post ul + p, .post ol + p, .post p + ul, .post p + ol { margin-top: 0.9rem; }
+.post ol { margin: 0; padding-inline-start: 1.3rem; display: grid; gap: 0.6rem; }
+.post-crumbs { font-size: 0.88rem; color: var(--muted); margin-bottom: 1.2rem; }
+.post-crumbs a { color: var(--muted); }
+.post-meta { font-size: 0.88rem; color: var(--muted); }
+.post h1 + .post-meta { margin-top: -0.4rem; }
+.post-short { margin: 1.6rem 0 0.4rem; padding: 1.1rem 1.25rem; background: var(--sand); border-inline-start: 3px solid var(--sage); }
+.post-short-label { font-size: 0.82rem; font-weight: 500; color: var(--ink); margin-bottom: 0.3rem; }
+.post-sources { font-size: 0.92rem; }
+.post-note { margin-top: 2.4rem; font-size: 0.88rem; color: var(--muted); }
+.post-cta { margin-top: 2rem; padding: 1.5rem; border: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+.post-cta p { color: var(--ink); font-weight: 500; }
+.post-related { margin-top: 0.9rem; }
+.post-list { list-style: none; padding: 0 !important; margin-top: 2rem !important; gap: 0 !important; }
+.post-list li { padding: 1.5rem 0; border-top: 1px solid var(--line); }
+.post-list li:last-child { border-bottom: 1px solid var(--line); }
+.post-list h2 { margin: 0 0 0.5rem; font-size: clamp(1.25rem, 2vw, 1.5rem); }
+.post-list h2 a { text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .post-list h2 a:hover { text-decoration: underline; text-underline-offset: 4px; } }
+.post-list p + .post-meta { margin-top: 0.5rem; }
+.post .legal-table-wrap + p, .post .post-short + p, .post .legal-table-wrap + h2 { margin-top: 1.2rem; }
+.post .post-short + p { margin-top: 1.4rem; }

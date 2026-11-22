@@ -117,6 +117,7 @@ export default function App() {
           <a href="#how">How it works</a>
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
+          <a href="/blog">Guides</a>
         </nav>
         <a className="btn btn-line btn-sm" href={talk} target="_blank" rel="noopener">
           Talk to us
@@ -388,6 +389,7 @@ export default function App() {
           </div>
           <div>
             <h3>Spaces</h3>
+            <a href="/blog">Owner guides</a>
             <a href={STUDIO} target="_blank" rel="noopener">Interior design studio</a>
             <a href={INSTAGRAM} target="_blank" rel="noopener">
               <InstagramLogo size={16} aria-hidden /> @spaces_pt

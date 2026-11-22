@@ -102,7 +102,7 @@ export default function App() {
   return (
     <div className="site">
       {schema.map((s, i) => (
-        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s) }} />
+        <script key={i} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(s).replace(/</g, "\\u003c") }} />
       ))}
       <a className="skip" href="#main">Skip to content</a>
 

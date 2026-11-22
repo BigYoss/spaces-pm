@@ -1,0 +1,4 @@
+Contact: mailto:team@spaces-pt.com
+Expires: 2027-11-22T00:00:00.000Z
+Preferred-Languages: en, pt, he
+Canonical: https://spaces-property-management.vercel.app/.well-known/security.txt

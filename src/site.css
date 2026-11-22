@@ -340,7 +340,8 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .foot-min { grid-template-columns: 1fr; padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); }
 
 /* Click-to-load map placeholder */
-.map-off { display: grid; place-content: center; justify-items: center; gap: 0.7rem; padding: 1.5rem; text-align: center; }
+/* aspect-ratio off here: with text inside, a 4:3 box grows wider than a 320px screen. */
+.map-off { aspect-ratio: auto; min-height: 16rem; display: grid; place-content: center; justify-items: center; gap: 0.7rem; padding: 1.5rem; text-align: center; }
 .map-off svg { color: var(--sage); }
 .map-off p { max-width: 22rem; color: var(--text); }
 .map-off .map-note { font-size: 0.82rem; color: var(--muted); }

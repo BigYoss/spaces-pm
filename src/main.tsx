@@ -1,0 +1,14 @@
+import { StrictMode } from "react";
+import { hydrateRoot, createRoot } from "react-dom/client";
+import App from "./App";
+import "./site.css";
+
+const root = document.getElementById("root")!;
+const app = (
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+// Production ships prerendered HTML (hydrate); dev starts empty (render).
+if (root.hasChildNodes()) hydrateRoot(root, app);
+else createRoot(root).render(app);

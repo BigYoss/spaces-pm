@@ -13,6 +13,7 @@ import {
 import { HeroVideo } from "./components/HeroVideo";
 import { Simulator } from "./components/Simulator";
 import { AssessmentForm } from "./components/AssessmentForm";
+import { MapEmbed } from "./components/MapEmbed";
 import { useParallax } from "./components/useParallax";
 import {
   SITE_URL,
@@ -365,14 +366,7 @@ export default function App() {
                 <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
               </li>
             </ul>
-            <div className="map">
-              <iframe
-                title="Map of Porto and Vila Nova de Gaia, the area Spaces covers"
-                src="https://www.google.com/maps?q=Porto%20and%20Vila%20Nova%20de%20Gaia%2C%20Portugal&z=13&output=embed"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
+            <MapEmbed />
             <a className="text-link" href={MAP_AREA} target="_blank" rel="noopener">
               Open the area in Google Maps <ArrowUpRight size={14} aria-hidden />
             </a>
@@ -403,6 +397,8 @@ export default function App() {
             <h3>Legal</h3>
             <a href={TERMS_EN} target="_blank" rel="noopener">Terms and conditions (EN)</a>
             <a href={TERMS_PT} target="_blank" rel="noopener" lang="pt-PT" hrefLang="pt-PT">Termos e condições (PT)</a>
+            <a href="/privacy">Privacy and cookies</a>
+            <a href="/legal">Legal information</a>
             <a href="/accessibility">Accessibility statement</a>
           </div>
         </nav>

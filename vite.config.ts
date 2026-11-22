@@ -9,6 +9,8 @@ export default defineConfig({
       input: {
         main: resolve(import.meta.dirname, "index.html"),
         accessibility: resolve(import.meta.dirname, "accessibility/index.html"),
+        privacy: resolve(import.meta.dirname, "privacy/index.html"),
+        legal: resolve(import.meta.dirname, "legal/index.html"),
       },
     },
   },

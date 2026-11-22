@@ -94,6 +94,10 @@ export function AssessmentForm() {
         </button>
       </div>
       <p className="form-note">Nothing is stored on this site. Your message opens in WhatsApp or your email app for you to send.</p>
+      <p className="form-note">
+        Giving these details is voluntary, but without them we cannot reply. Spaces uses them only to answer your enquiry. You can ask to see or
+        correct them at any time. See the <a href="/privacy">privacy policy</a>.
+      </p>
     </form>
   );
 }

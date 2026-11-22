@@ -3,6 +3,14 @@
     {
       "source": "/accessibility",
       "destination": "/accessibility/index.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/privacy/index.html"
+    },
+    {
+      "source": "/legal",
+      "destination": "/legal/index.html"
     }
   ],
   "headers": [

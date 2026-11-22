@@ -31,3 +31,5 @@ Paper #F6F3EA, sand #EAE6DA, ink #1B1B1B, text #333, muted #595853, single accen
 - One label per intent: contact CTA is always "Talk to us".
 - Set `VITE_SITE_URL` in `.env` (and in Vercel env vars) to the final domain; also update `public/robots.txt` and `public/sitemap.xml`.
 - Accessibility target: WCAG 2.2 AA (covers IS 5568 and EN 301 549). Keep the hero video pause button, roving-tabindex radio groups, focus-to-first-error and contrast over photos (tile scrim) intact.
+- Privacy: the site sets no cookies and loads no third party before a click (Google Maps is click-to-load in `MapEmbed.tsx`). Adding analytics, pixels or embeds requires a consent banner first and an update to `/privacy`.
+- `privacy/`, `legal/` legal pages. `scripts/check-todo.mjs` fails the build while any `[TO CONFIRM: ...]` placeholder remains (ALLOW_TODO=1 for local drafts only).

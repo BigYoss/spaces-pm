@@ -338,3 +338,15 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .legal a { color: var(--ink); text-underline-offset: 3px; }
 .legal-date { margin-top: 2.6rem; padding-top: 1.2rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
 .foot-min { grid-template-columns: 1fr; padding-block: 2rem calc(2rem + env(safe-area-inset-bottom, 0px)); }
+
+/* Click-to-load map placeholder */
+.map-off { display: grid; place-content: center; justify-items: center; gap: 0.7rem; padding: 1.5rem; text-align: center; }
+.map-off svg { color: var(--sage); }
+.map-off p { max-width: 22rem; color: var(--text); }
+.map-off .map-note { font-size: 0.82rem; color: var(--muted); }
+.form-note a { color: var(--ink); text-underline-offset: 3px; }
+.legal table { width: 100%; border-collapse: collapse; margin-top: 0.9rem; font-size: 0.94rem; }
+.legal th, .legal td { text-align: start; vertical-align: top; padding: 0.6rem 0.75rem 0.6rem 0; border-bottom: 1px solid var(--line); }
+.legal th { color: var(--ink); font-weight: 500; }
+.legal-table-wrap { overflow-x: auto; }
+.todo { background: #fff3b0; color: var(--ink); padding: 0 0.25rem; }

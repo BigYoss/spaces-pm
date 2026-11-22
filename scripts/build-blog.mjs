@@ -48,7 +48,8 @@ function page({ path, title, description, main, ld }) {
     .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${esc(description)}" />`)
     .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${SITE}${path}" />` +
       `\n    <meta property="og:type" content="article" />\n    <meta property="og:title" content="${esc(title)}" />\n    <meta property="og:description" content="${esc(description)}" />\n    <meta property="og:url" content="${SITE}${path}" />\n    <meta property="og:image" content="${SITE}/assets/og.jpg" />\n    <link rel="alternate" type="application/rss+xml" title="Spaces owner guides" href="/blog/rss.xml" />\n    ${ld.map(jsonLd).join("\n    ")}`)
-    .replace(/<main id="main" class="legal">[\s\S]*<\/main>/, `<main id="main" class="legal post">\n${main}\n    </main>`);
+    .replace(/<main id="main" class="legal">[\s\S]*<\/main>/, `<main id="main" class="legal post">\n${main}\n    </main>`)
+    .replaceAll('<a href="/blog">Guides</a>', '<a href="/blog" aria-current="page">Guides</a>');
 }
 
 const org = { "@type": "Organization", "@id": `${SITE}/#business`, name: "Spaces", url: `${SITE}/` };

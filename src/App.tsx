@@ -9,6 +9,8 @@ import {
   EnvelopeSimple,
   InstagramLogo,
   Plus,
+  List,
+  X,
 } from "@phosphor-icons/react/dist/ssr";
 import { HeroVideo } from "./components/HeroVideo";
 import { Simulator } from "./components/Simulator";
@@ -119,10 +121,37 @@ export default function App() {
           <a href="#contact">Contact</a>
           <a href="/blog">Guides</a>
         </nav>
-        <a className="btn btn-line btn-sm" href={talk} target="_blank" rel="noopener">
-          Talk to us
-        </a>
+        <div className="nav-actions">
+          <a className="btn btn-line btn-sm" href={talk} target="_blank" rel="noopener">
+            Talk to us
+          </a>
+          <button type="button" className="nav-toggle" aria-expanded="false" aria-controls="site-menu" aria-label="Open menu">
+            <List size={22} aria-hidden />
+          </button>
+        </div>
       </header>
+
+      {/* Mobile menu (≤900px). Behaviour in src/nav.ts; same markup in the static pages. */}
+      <div className="menu-backdrop" aria-hidden="true" />
+      <div id="site-menu" className="menu" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true" inert>
+        <div className="menu-head">
+          <span className="menu-title">Menu</span>
+          <button type="button" className="menu-close" aria-label="Close menu">
+            <X size={22} aria-hidden />
+          </button>
+        </div>
+        <nav aria-label="Menu">
+          <a href="#services">Services</a>
+          <a href="#fees">Fees</a>
+          <a href="#how">How it works</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+          <a href="/blog">Guides</a>
+        </nav>
+        <a className="btn btn-solid" href={talk} target="_blank" rel="noopener">
+          Talk to us <ArrowRight size={18} aria-hidden />
+        </a>
+      </div>
 
       <main id="main">
         {/* HERO: three depth layers (copy, film frame, inset photo) */}

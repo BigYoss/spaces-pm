@@ -15,6 +15,7 @@ Audience: apartment owners in Porto and Vila Nova de Gaia, many living abroad. P
 - `src/components/Simulator.tsx` income estimator. Figures come from Spaces' own owner projections (AL licence, 74% occupancy): gross per T0-T3 per year, utilities, accountant 850, condominium 400, wear 200, platforms 15%, management 20% + 23% IVA. Do not change these without new data from Spaces.
 - `src/components/AssessmentForm.tsx` composes a WhatsApp or email message. Stores nothing.
 - `src/components/HeroVideo.tsx` muted autoplay loop with poster; reduced motion keeps the poster.
+- `src/nav.ts` mobile menu (≤900px hamburger, slide-in dialog: focus trap, Esc/backdrop/link close, focus return, inert when closed, scroll lock). Markup lives in `App.tsx` and in each static page header (accessibility, privacy, legal; blog pages inherit from accessibility). Desktop keeps inline links and the header "Talk to us".
 - `src/components/useParallax.ts` JS fallback; main parallax is CSS scroll-driven (`view-timeline`) in site.css.
 - `accessibility/index.html` + `src/statement.ts` static accessibility statement (second Vite entry, `vercel.json` rewrites `/accessibility`). Update its date and limitations after every audit; never claim more than the audit shows.
 - `public/a11y-widget.js` self-hosted accessibility menu (assistive extra only, not compliance). Stores settings in localStorage only after a user change.

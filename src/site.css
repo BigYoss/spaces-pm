@@ -377,3 +377,39 @@ a, button, summary, [role="radio"] { touch-action: manipulation; }
 .post-list p + .post-meta { margin-top: 0.5rem; }
 .post .legal-table-wrap + p, .post .post-short + p, .post .legal-table-wrap + h2 { margin-top: 1.2rem; }
 .post .post-short + p { margin-top: 1.4rem; }
+
+/* HEADER ACTIONS + MOBILE MENU (behaviour in src/nav.ts). Desktop keeps the inline links; ≤900px gets the hamburger. */
+.nav-actions { display: flex; align-items: center; gap: 0.6rem; }
+.nav-links a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.nav-toggle, .menu-close {
+  display: none; place-items: center; width: 2.75rem; height: 2.75rem; flex: none; border-radius: 50%;
+  border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; transition: background-color 0.2s var(--ease);
+}
+.menu-close { display: grid; }
+@media (hover: hover) and (pointer: fine) { .nav-toggle:hover, .menu-close:hover { background: var(--sand); } }
+.menu-backdrop {
+  position: fixed; inset: 0; z-index: 40; background: rgb(27 27 27 / 0.35);
+  opacity: 0; visibility: hidden; transition: opacity 0.28s var(--ease), visibility 0s linear 0.28s;
+}
+.menu-backdrop.is-open { opacity: 1; visibility: visible; transition: opacity 0.28s var(--ease); }
+.menu {
+  position: fixed; inset-block: 0; inset-inline-end: 0; z-index: 41; width: min(24rem, 100%);
+  display: flex; flex-direction: column; gap: 1.25rem; overflow-y: auto; overscroll-behavior: contain;
+  padding: calc(0.9rem + env(safe-area-inset-top, 0px)) var(--gutter) calc(1.5rem + env(safe-area-inset-bottom, 0px));
+  background: var(--paper); box-shadow: -12px 0 32px -16px rgb(27 27 27 / 0.35);
+  transform: translateX(100%); visibility: hidden; transition: transform 0.28s var(--ease), visibility 0s linear 0.28s;
+}
+.menu.is-open { transform: none; visibility: visible; transition: transform 0.28s var(--ease); }
+.menu-head { display: flex; align-items: center; justify-content: space-between; min-height: 3rem; }
+.menu-title { font-size: 0.85rem; color: var(--muted); }
+.menu nav { display: grid; }
+.menu nav a { display: block; padding: 0.9rem 0; font-size: 1.4rem; font-weight: 300; letter-spacing: -0.02em; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+.menu nav a:first-child { border-top: 1px solid var(--line); }
+.menu nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
+.menu > .btn { margin-top: auto; }
+html.menu-open { overflow: hidden; }
+/* The accessibility menu and the call button sit above the drawer; hide them while it is open. */
+html.menu-open .a11yw, html.menu-open .dock { visibility: hidden; }
+@media (max-width: 900px) { .nav-toggle { display: grid; } }
+@media (min-width: 901px) { .menu, .menu-backdrop { display: none; } }
+@media (max-width: 380px) { .nav { gap: 0.75rem; } .nav-actions { gap: 0.4rem; } .nav-actions .btn-sm { padding-inline: 0.9rem; } }

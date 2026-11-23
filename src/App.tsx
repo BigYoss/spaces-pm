@@ -178,7 +178,7 @@ export default function App() {
               <HeroVideo />
             </div>
             <figure className="hero-inset" data-depth="0.32" style={{ ["--depth" as string]: 0.32 }}>
-              <Img name="about-keys" alt="Apartment keys on an oak console by an open green door" sizes="(max-width: 860px) 40vw, 16vw" widths={[720]} w={720} h={960} eager />
+              <Img name="inset-teal-living" alt="A living room with a teal wall, open shelves and a door onto a balcony with flower boxes" sizes="(max-width: 860px) 40vw, 16vw" widths={[720]} w={720} h={960} eager />
             </figure>
           </div>
         </section>
@@ -210,7 +210,7 @@ export default function App() {
           <div className="svc-grid">
             <article className="svc svc-lead">
               <div className="svc-img">
-                <Img name="stay-short" alt="A made bed with folded towels in a sunlit Porto bedroom" sizes="(max-width: 860px) 92vw, 50vw" widths={[600, 1000]} w={1000} h={1250} />
+                <Img name="stay-short-blue-studio" alt="A bright studio with a large bed, a sofa and a blue rug, opening onto a sunny balcony" sizes="(max-width: 860px) 92vw, 50vw" widths={[600, 1000, 1600]} w={1600} h={1067} />
               </div>
               <div className="svc-body">
                 <h3>Short stays</h3>
@@ -220,7 +220,7 @@ export default function App() {
             </article>
             <article className="svc">
               <div className="svc-img">
-                <Img name="stay-medium" alt="An oak desk by a tall window over Porto rooftops" sizes="(max-width: 860px) 92vw, 25vw" widths={[600, 1000]} w={1000} h={1250} />
+                <Img name="stay-medium-oak-studio" alt="An oak dining table with green chairs in a studio with a sofa bed and a balcony" sizes="(max-width: 860px) 92vw, 25vw" widths={[600, 1000, 1600]} w={1600} h={1067} />
               </div>
               <div className="svc-body">
                 <h3>Medium stays</h3>
@@ -230,7 +230,7 @@ export default function App() {
             </article>
             <article className="svc">
               <div className="svc-img">
-                <Img name="stay-long" alt="A bright open kitchen with a round oak table" sizes="(max-width: 860px) 92vw, 25vw" widths={[600, 1000]} w={1000} h={1250} />
+                <Img name="stay-long-mustard-bedroom" alt="A bedroom with a mustard throw on the bed, a sofa and two balcony doors" sizes="(max-width: 860px) 92vw, 25vw" widths={[600, 1000, 1600]} w={1600} h={1067} />
               </div>
               <div className="svc-body">
                 <h3>Long-term lets</h3>

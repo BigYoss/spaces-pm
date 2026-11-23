@@ -10,7 +10,14 @@ const ROOT = resolve(".");
 const DIST = join(ROOT, "dist");
 const SRC = join(ROOT, "content/blog");
 const shell = readFileSync(join(DIST, "accessibility/index.html"), "utf8");
-const SITE = shell.match(/<link rel="canonical" href="(https?:\/\/[^"]+?)\/accessibility"/)[1];
+// Site origin: from the built canonical (VITE_SITE_URL), else the env var. Preview builds may lack it (Vercel scopes env vars
+// per environment); fall back there, but a production build without the real URL must fail rather than ship wrong canonicals.
+const fromCanonical = shell.match(/<link rel="canonical" href="(https?:\/\/[^"]+?)\/accessibility"/)?.[1];
+const SITE = (fromCanonical || process.env.VITE_SITE_URL || "").replace(/\/$/, "") || (() => {
+  if (process.env.VERCEL_ENV === "production") throw new Error("VITE_SITE_URL is not set for this production build.");
+  console.warn("build-blog: VITE_SITE_URL not set; using a placeholder origin for this non-production build.");
+  return "https://www.example.com";
+})();
 const WHATSAPP = "https://wa.me/351914044112?text=" + encodeURIComponent("Hi Spaces, I'd like to talk about managing my apartment.");
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");

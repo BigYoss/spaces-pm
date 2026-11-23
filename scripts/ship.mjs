@@ -10,7 +10,7 @@
 // Stops at the first failure and never pushes a commit that failed the build or QA.
 // Commits use the GitHub no-reply identity so no personal email lands in the history.
 // Vercel status needs network access to api.vercel.com and a token (VERCEL_TOKEN, or one injected by a proxy).
-import { spawn, spawnSync, execSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { readdirSync, statSync, readFileSync, existsSync } from "node:fs";
 import { join, relative, resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -107,8 +107,13 @@ if (NO_WAIT) process.exit(0);
 
 // 5. Wait for the Vercel deployment of this exact commit
 step(5, "Vercel deployment");
-const headers = { Authorization: `Bearer ${process.env.VERCEL_TOKEN || "proxyinjected"}` };
-const api = (p) => fetch(`https://api.vercel.com${p}${p.includes("?") ? "&" : "?"}teamId=${VERCEL.team}`, { headers }).then((r) => r.json());
+// curl, not fetch: Node's fetch ignores HTTPS_PROXY, and sandboxes often route outbound traffic through a proxy.
+const api = async (p) => {
+  const url = `https://api.vercel.com${p}${p.includes("?") ? "&" : "?"}teamId=${VERCEL.team}`;
+  const r = spawnSync("curl", ["-s", "--max-time", "20", "-H", `Authorization: Bearer ${process.env.VERCEL_TOKEN || "proxyinjected"}`, url], { encoding: "utf8" });
+  if (r.status !== 0) throw new Error("curl failed");
+  return JSON.parse(r.stdout);
+};
 let dep = null;
 const deadline = Date.now() + 10 * 60 * 1000;
 while (Date.now() < deadline) {

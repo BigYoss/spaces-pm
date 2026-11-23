@@ -2,6 +2,8 @@ import {
   ArrowRight,
   ArrowUpRight,
   ChatsCircle,
+  Broom,
+  Key,
   Wrench,
   CalendarCheck,
   Phone,
@@ -239,46 +241,50 @@ export default function App() {
           </div>
         </section>
 
-        {/* OPERATIONS: bento */}
+        {/* OPERATIONS: plain, scannable list (no photos) + design studio row */}
         <section className="ops" aria-labelledby="ops-h">
           <h2 id="ops-h">What we take care of.</h2>
-          <div className="bento">
-            <div className="tile tile-text">
+          <ul className="care-list">
+            <li>
               <ChatsCircle size={28} weight="light" aria-hidden />
               <h3>Guest messages</h3>
               <p>Questions before arrival and during the stay go to the Spaces team, not to you.</p>
-            </div>
-            <div className="tile tile-photo tile-tall">
-              <Img name="stay-short" alt="" sizes="(max-width: 860px) 92vw, 33vw" widths={[600, 1000]} w={1000} h={1250} />
-              <div className="tile-cap">
-                <h3>Cleaning and linen</h3>
-                <p>The home is cleaned and fresh linen laid out between stays.</p>
-              </div>
-            </div>
-            <div className="tile tile-text">
+            </li>
+            <li>
+              <Broom size={28} weight="light" aria-hidden />
+              <h3>Cleaning and linen</h3>
+              <p>The home is cleaned and fresh linen laid out between stays.</p>
+            </li>
+            <li>
               <CalendarCheck size={28} weight="light" aria-hidden />
               <h3>Listings and calendar</h3>
               <p>Your apartment listed on the booking platforms, with the calendar kept up to date.</p>
-            </div>
-            <div className="tile tile-photo">
-              <Img name="about-keys" alt="" sizes="(max-width: 860px) 92vw, 33vw" widths={[720, 1200]} w={1200} h={1600} />
-              <div className="tile-cap">
-                <h3>Check-in and keys</h3>
-                <p>Guests are welcomed and keys handed over, so you don't need to be there in person.</p>
-              </div>
-            </div>
-            <div className="tile tile-text">
+            </li>
+            <li>
+              <Key size={28} weight="light" aria-hidden />
+              <h3>Check-in and keys</h3>
+              <p>Guests are welcomed and keys handed over, so you don't need to be there in person.</p>
+            </li>
+            <li>
               <Wrench size={28} weight="light" aria-hidden />
               <h3>Upkeep</h3>
               <p>Small repairs are reported and followed up.</p>
-            </div>
-            <a className="tile tile-studio" href={STUDIO} target="_blank" rel="noopener">
-              <h3>Empty or dated flat?</h3>
-              <p>The Spaces design studio can plan, furnish and set it up before it is listed.</p>
-              <span className="tile-link">
+            </li>
+          </ul>
+          <div className="care-design">
+            <p className="care-design-lead">
+              To get the most out of an apartment, we give it a clear, theme‑led design, so guests book a stay they
+              remember, not just a place to sleep.
+            </p>
+            <div className="care-design-studio">
+              <div>
+                <h3>Empty or dated flat?</h3>
+                <p>The Spaces design studio can plan, furnish and set it up before it is listed.</p>
+              </div>
+              <a className="btn btn-line" href={STUDIO} target="_blank" rel="noopener">
                 Visit the studio <ArrowUpRight size={16} aria-hidden />
-              </span>
-            </a>
+              </a>
+            </div>
           </div>
         </section>
 

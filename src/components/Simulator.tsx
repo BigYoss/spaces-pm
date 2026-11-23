@@ -89,7 +89,7 @@ export function Simulator() {
       </div>
 
       <p className="sim-note">
-        Based on Spaces' own owner projections for an apartment with an AL licence at 74% occupancy.
+        Based on Spaces' own owner projections for a centrally located apartment with an AL licence at 74% occupancy.
         {PROJECTIONS[type].note ? ` ${PROJECTIONS[type].note}` : ""} An estimate, not a guarantee: results depend on the
         property, location and season.
       </p>

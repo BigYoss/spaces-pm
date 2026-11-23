@@ -12,7 +12,7 @@ Audience: apartment owners in Porto and Vila Nova de Gaia, many living abroad. P
 ## Files
 - `src/App.tsx` page sections, JSON-LD (LocalBusiness + FAQPage).
 - `src/components/content.ts` contact details, fees, FAQ, income projections (single source of truth).
-- `src/components/Simulator.tsx` income estimator. Figures come from Spaces' own owner projections (AL licence, 74% occupancy): gross per T0-T3 per year, utilities, accountant 850, condominium 400, wear 200, platforms 15%, management 20% + 23% IVA. Do not change these without new data from Spaces.
+- `src/components/Simulator.tsx` income estimator. Figures come from Spaces' own owner projections (centrally located flat, AL licence, 74% occupancy): gross per T0-T3 per year, utilities, accountant 850, condominium 400, wear 200, platforms 15%, management 20% + 23% IVA. Do not change these without new data from Spaces.
 - `src/components/AssessmentForm.tsx` composes a WhatsApp or email message. Stores nothing.
 - `src/components/HeroVideo.tsx` muted autoplay loop with poster; reduced motion keeps the poster.
 - `src/nav.ts` mobile menu (≤900px hamburger, slide-in dialog: focus trap, Esc/backdrop/link close, focus return, inert when closed, scroll lock). Markup lives in `App.tsx` and in each static page header (accessibility, privacy, legal; blog pages inherit from accessibility). Desktop keeps inline links and the header "Talk to us".
@@ -31,7 +31,7 @@ Paper #F6F3EA, sand #EAE6DA, ink #1B1B1B, text #333, muted #595853, single accen
 - Keep every hover style inside `@media (hover: hover) and (pointer: fine)`; inputs stay 16px; respect `prefers-reduced-motion`.
 - One label per intent: contact CTA is always "Talk to us".
 - Set `VITE_SITE_URL` in `.env` (and in Vercel env vars) to the final domain; also update `public/robots.txt` and `public/sitemap.xml`.
-- Accessibility target: WCAG 2.2 AA (covers IS 5568 and EN 301 549). Keep the hero video pause button, roving-tabindex radio groups, focus-to-first-error and contrast over photos (tile scrim) intact.
+- Accessibility target: WCAG 2.2 AA (covers IS 5568 and EN 301 549). Keep the hero video pause button, roving-tabindex radio groups, focus-to-first-error intact. "What we take care of" is deliberately text-only (no photos) for readability.
 - Privacy: the site sets no cookies and loads no third party before a click (Google Maps is click-to-load in `MapEmbed.tsx`). Adding analytics, pixels or embeds requires a consent banner first and an update to `/privacy`.
 - `privacy/`, `legal/` legal pages. `scripts/check-todo.mjs` fails the build while any `[TO CONFIRM: ...]` placeholder remains (ALLOW_TODO=1 for local drafts only).
 - Security headers live in `vercel.json` (strict CSP: self-hosted scripts only, Google allowed only as the map frame). Any new third-party script, font, frame or API must be added to the CSP, tested for `securitypolicyviolation` events, and declared in `/privacy`. Keep `/.well-known/security.txt` Expires in the future (renew yearly).

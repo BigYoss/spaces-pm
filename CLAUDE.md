@@ -21,6 +21,11 @@ Audience: apartment owners in Porto and Vila Nova de Gaia, many living abroad. P
 - `public/a11y-widget.js` self-hosted accessibility menu (assistive extra only, not compliance). Stores settings in localStorage only after a user change.
 - `public/assets` images, hero video (`hero-1080.mp4`, `hero-720.mp4`, `hero-poster.webp`), OG image, favicons. `public/fonts` self-hosted Epilogue.
 
+## Shipping
+- Ship every change with `node scripts/ship.mjs -m "message"` (skill: `.claude/skills/ship`). It builds, runs QA on every page under the real `vercel.json` headers (CSP, errors, broken assets, reflow at 1280/375/320, axe), commits with the GitHub no-reply identity, pushes, and waits for the Vercel deployment of that commit. `npm run qa` checks without committing.
+- `main` deploys to production; other branches get previews. Never bypass a failed build or QA, never force-push.
+- QA tools live in `scripts/qa/` (`serve-with-headers.mjs`, `regression.mjs`). Local `.env` needs `VITE_SITE_URL` and `VITE_FORM_ENDPOINT` to match production.
+
 ## Brand (matches spaces-pt.com)
 Paper #F6F3EA, sand #EAE6DA, ink #1B1B1B, text #333, muted #595853, single accent sage #5F6E4E. Epilogue, light 300 headlines. Pill buttons, square images. Light theme only.
 

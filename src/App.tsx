@@ -440,8 +440,9 @@ export default function App() {
           </div>
         </nav>
         <p className="foot-copy">© 2026 Spaces. All rights reserved.</p>
-        <a className="dock" href={PHONE_MAIN.href} aria-label={`Call Spaces on ${PHONE_MAIN.label}`}>
-          <Phone size={22} aria-hidden />
+        {/* Floating WhatsApp button, stacked above the accessibility menu button (same size and colour). */}
+        <a className="wa-float" href={talk} target="_blank" rel="noopener" aria-label="Talk to us on WhatsApp">
+          <WhatsappLogo size={28} weight="fill" aria-hidden />
         </a>
       </footer>
     </div>

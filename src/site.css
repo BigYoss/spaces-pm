@@ -407,3 +407,14 @@ html.menu-open .a11yw, html.menu-open .dock { visibility: hidden; }
   .care-list li p { grid-column: 2; }
   .care-design { padding-inline: 1.25rem; }
 }
+
+/* CONTACT FORM: honeypot, hint, status */
+.hp { position: absolute; inset-inline-start: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.field-hint { font-size: 0.85rem; color: var(--muted); margin-top: -0.6rem; }
+.form-row + .field-err, #f-contact-hint.field-err { margin-top: -0.6rem; }
+.form-status:empty { display: none; }
+.form-status { padding: 0.9rem 1.1rem; font-size: 0.98rem; color: var(--ink); outline-offset: 2px; }
+.form-status-sent { background: var(--sage-tint); border-inline-start: 3px solid var(--sage); }
+.form-status-error { background: #f7e3dd; border-inline-start: 3px solid #a3341f; }
+.form-status a { color: var(--ink); }
+.btn[disabled] { opacity: 0.6; cursor: progress; }
